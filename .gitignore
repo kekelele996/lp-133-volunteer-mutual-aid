@@ -1,0 +1,29 @@
+# 依赖与构建产物
+node_modules/
+dist/
+build/
+coverage/
+
+# 环境变量与敏感配置（含数据库口令、JWT_SECRET，禁止入库）
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+database/.env
+
+# 运行日志与进程输出
+nohup.out
+*.log
+logs/
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 缓存
+.cache/
+*.tsbuildinfo

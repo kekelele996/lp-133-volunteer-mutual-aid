@@ -36,7 +36,8 @@ router.post('/', authenticateToken, asyncHandler(async (req, res) => {
 
   const [result] = await pool.query(
     "INSERT INTO needs (user_id, title, description, type, address, lat, lng, expected_time, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending')",
-    [req.user.id, title, description, type, address, lat, lng, expected_time],
+    // expected_time 允许为空（前端未选时间时传 ''），必须转成 NULL 再入库，否则 MySQL 报 Incorrect datetime value
+    [req.user.id, title, description, type, address, lat, lng, expected_time || null],
   );
 
   res.json({ message: messages.needs.created, needId: result.insertId });

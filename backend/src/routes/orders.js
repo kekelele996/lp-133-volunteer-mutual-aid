@@ -14,7 +14,7 @@ router.get('/', authenticateToken, asyncHandler(async (req, res) => {
     LEFT JOIN needs n ON o.need_id = n.id
     LEFT JOIN users u1 ON o.user_id = u1.id
     LEFT JOIN users u2 ON o.volunteer_id = u2.id
-    WHERE o.user_id = ? OR o.volunteer_id = ?`;
+    WHERE (o.user_id = ? OR o.volunteer_id = ?)`;
   const params = [req.user.id, req.user.id];
 
   if (status) {
